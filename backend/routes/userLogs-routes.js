@@ -10,14 +10,8 @@ import {
 
 const router = new Router();
 
-router.route("/")
-    .get(getAllLogs)
-    .post(postLog)
-    .delete(deleteAllLogs);
+router.route("/").get(getAllLogs).post(postLog).delete(deleteAllLogs);
 
-router.route("/:id")
-    .get(getLogById)
-    .delete(deleteLog)
-    .patch(patchLog);
+router.route("/:id").get(getLogById).delete(deleteLog).patch(patchLog);
 
 export default router;

@@ -42,11 +42,12 @@ const AddUserLogForm = () => {
 
     const handleSubmit = async () => {
         await axios.post("http://localhost:3001/userLogs", { name: name, type: type, locations: locations, dateStart: start, dateEnd: end, img: img, text: text } );
-        setLoaded(true);
+        setLoaded(false);
+        window.location.reload()
     }
 
     return (<>
-        <h1>neuer Reisetagebuch Eintrag: </h1>
+        <h2>neuer Reisetagebuch Eintrag: </h2>
         <li>Name: <input onChange={handleNameChange} /></li>
         <li>Art der Reise: <input onChange={handleTypeChange} /></li>
         <li>Reiseziele: <input onChange={handleLocationsChange} /></li>
@@ -54,7 +55,7 @@ const AddUserLogForm = () => {
         <li>Bilder: <input type="file" onChange={handleImgChange} /></li>
         <li>Reisetagebuch: <textarea onChange={handleTextChange} /></li>
 
-        <button onClick={handleSubmit}>submit</button>
+        <button onClick={handleSubmit}>eintragen</button>
     </>)
 }
 
