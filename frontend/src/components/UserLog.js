@@ -1,6 +1,7 @@
 import UserImages from "./UserImages.js";
 
 const UserLog = (props) => {
+
   const {
     name,
     type,
