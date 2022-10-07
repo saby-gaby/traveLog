@@ -14,6 +14,7 @@ const UserLogs = () => {
             setLoaded(true);
         }
         getAllLogs()
+        
     }, []);
 
     const onLogDelete = async (id) => {

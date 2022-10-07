@@ -1,6 +1,6 @@
 const UserLog = (props) => {
     const { name, type, locations, dateStart, dateEnd, img, text, key, onLogDelete, id } = props;
-
+    
     return (<>
         <li>
             {type} nach {locations[0]}

@@ -17,6 +17,15 @@ export const getLogById = async (req, res) => {
     res.status(500).send(error.message);
   }
 };
+  
+export const getLogByLocation = async (req, res) => {
+  try {
+    const log = await userLogModel.where("locations").in([req.params.location]);
+    res.send(log);
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+};
 
 export const postLog = async (req, res) => {
   try {
