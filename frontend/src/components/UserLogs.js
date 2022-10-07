@@ -27,10 +27,13 @@ const UserLogs = () => {
         setLogs(updatedLogs);
     }
 
-    return(<>
+    return (<>
+        <h3>Tagebucheinträge von anderen Nutzern:</h3>
         <ul>
             {logs.map((UserLogObj, index) => {
-                return (<UserLog name={UserLogObj.name} type={UserLogObj.type} locations={UserLogObj.locations} dateStart={UserLogObj.dateStart} dateEnd={UserLogObj.dateEnd} img={UserLogObj.img} text={UserLogObj.text} key={index} onLogDelete={onLogDelete} id={UserLogObj._id}/>)
+                return (<>
+                    <UserLog name={UserLogObj.name} type={UserLogObj.type} locations={UserLogObj.locations} dateStart={UserLogObj.dateStart} dateEnd={UserLogObj.dateEnd} img={UserLogObj.img} text={UserLogObj.text} key={index} onLogDelete={onLogDelete} id={UserLogObj._id} />
+                </>)
             })}
         </ul>
     </>)
