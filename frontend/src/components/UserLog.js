@@ -3,7 +3,6 @@ import { useContext } from "react";
 import { UserLogsContext } from "../context/userLogsContext";
 
 const UserLog = (props) => {
-
   const {
     name,
     type,
@@ -14,7 +13,7 @@ const UserLog = (props) => {
     text,
     onLogDelete,
     id,
-    getTravelDestination
+    getTravelDestination,
   } = props;
   const { edit, setEdit } = useContext(UserLogsContext);
 
@@ -36,11 +35,14 @@ const UserLog = (props) => {
           <li>Reisetagebuch: {text}</li>
         </ul>
         <button onClick={() => onLogDelete(id)}>Eintrag löschen</button>
-        <button onClick={() => {
-          setEdit(!edit)
-          getTravelDestination(id)
-          console.log(edit);
-        }}>Eintrag bearbeiten</button>
+        <button
+          onClick={() => {
+            setEdit(!edit);
+            getTravelDestination(id);
+          }}
+        >
+          Eintrag bearbeiten
+        </button>
       </li>
       <br />
     </>

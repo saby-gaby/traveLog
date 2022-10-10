@@ -4,7 +4,7 @@ import axios from "axios";
 import { UserLogsContext } from "../context/userLogsContext.js";
 
 const UserLogs = () => {
-  const { logs, setLogs, setLoaded, edit, getLogs, travelDest, setTravelDest } =
+  const { logs, setLogs, setLoaded, setTravelDest } =
     useContext(UserLogsContext);
 
   useEffect(() => {
@@ -31,11 +31,6 @@ const UserLogs = () => {
     const res = await axios.get(`http://localhost:3001/userLogs/${id}`);
     const data = await res.data;
     setTravelDest(data);
-      if (edit) {
-          const name = travelDest.name;
-      console.log(travelDest);
-      console.log(name);
-    }
   };
 
   return (
