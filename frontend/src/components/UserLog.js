@@ -1,7 +1,8 @@
 import UserImages from "./UserImages.js";
+import { useContext } from "react";
+import { UserLogsContext } from "../context/userLogsContext";
 
 const UserLog = (props) => {
-
   const {
     name,
     type,
@@ -10,10 +11,11 @@ const UserLog = (props) => {
     dateEnd,
     img,
     text,
-    key,
     onLogDelete,
     id,
+    getTravelDestination,
   } = props;
+  const { edit, setEdit } = useContext(UserLogsContext);
 
   return (
     <>
@@ -33,6 +35,14 @@ const UserLog = (props) => {
           <li>Reisetagebuch: {text}</li>
         </ul>
         <button onClick={() => onLogDelete(id)}>Eintrag löschen</button>
+        <button
+          onClick={() => {
+            setEdit(!edit);
+            getTravelDestination(id);
+          }}
+        >
+          Eintrag bearbeiten
+        </button>
       </li>
       <br />
     </>
