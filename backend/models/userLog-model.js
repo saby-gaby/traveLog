@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-// import imageSchema from "../../imageDb/model.js"
 
 const userLogSchema = new mongoose.Schema({
   name: {
@@ -12,11 +11,10 @@ const userLogSchema = new mongoose.Schema({
   locations: [String],
   dateStart: String,
   dateEnd: String,
-  img: [String],
-  // img: [{
-  //   type: mongoose.Schema.Types.ObjectId,
-  //   ref: imageSchema,
-  // }],
+  img: {
+    data: Buffer,
+    contentType: String
+  },
   text: {
     type: String,
     required: true,

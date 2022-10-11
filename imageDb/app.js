@@ -1,6 +1,5 @@
 import express from 'express'
 const app = express()
-// import {bodyParser} from "express";
 import mongoose from 'mongoose'
 
 import {dirname} from 'path';
@@ -8,7 +7,6 @@ import { fileURLToPath } from "url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url)); 
 import fs from 'fs';
-// import path from 'path';
 import * as path from 'path';
 import'dotenv/config';
 import imgModel from './model.js';
@@ -25,9 +23,8 @@ mongoose.connect(_uri,
         console.log('connected')
 });
 
-// app.use(bodyParser.urlencoded({ extended: false }))
 app.use(express.urlencoded({ extended: false }))
-// app.use(bodyParser.json())
+
 app.use(express.json())
 
   
