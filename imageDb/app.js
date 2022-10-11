@@ -1,11 +1,18 @@
-var express = require('express')
-var app = express()
-var bodyParser = require('body-parser');
-var mongoose = require('mongoose')
-  
-var fs = require('fs');
-var path = require('path');
-require('dotenv/config');
+import express from 'express'
+const app = express()
+// import {bodyParser} from "express";
+import mongoose from 'mongoose'
+
+import {dirname} from 'path';
+import { fileURLToPath } from "url";
+
+const __dirname = dirname(fileURLToPath(import.meta.url)); 
+import fs from 'fs';
+// import path from 'path';
+import * as path from 'path';
+import'dotenv/config';
+import imgModel from './model.js';
+import multer from 'multer';
 
 const _pwd = process.env.MONGO_DB_PW;
 const _user = process.env.MONGO_DB_USER;
@@ -17,16 +24,18 @@ mongoose.connect(_uri,
     { useNewUrlParser: true, useUnifiedTopology: true }, err => {
         console.log('connected')
 });
-    
-app.use(bodyParser.urlencoded({ extended: false }))
-app.use(bodyParser.json())
+
+// app.use(bodyParser.urlencoded({ extended: false }))
+app.use(express.urlencoded({ extended: false }))
+// app.use(bodyParser.json())
+app.use(express.json())
+
   
-// Set EJS as templating engine 
+
 app.set("view engine", "ejs");
 
-var multer = require('multer');
   
-var storage = multer.diskStorage({
+const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, 'uploads')
     },
@@ -35,9 +44,7 @@ var storage = multer.diskStorage({
     }
 });
   
-var upload = multer({ storage: storage });
-
-var imgModel = require('./model');
+const upload = multer({ storage: storage });
 
 app.get('/', (req, res) => {
     imgModel.find({}, (err, items) => {
@@ -53,7 +60,7 @@ app.get('/', (req, res) => {
 
 app.post('/', upload.single('image'), (req, res, next) => {
   
-    var obj = {
+    const obj = {
         name: req.body.name,
         desc: req.body.desc,
         img: {
@@ -72,7 +79,7 @@ app.post('/', upload.single('image'), (req, res, next) => {
     });
 });
 
-var port = "3002"
+const port = "3002"
 app.listen(port, err => {
     if (err)
         throw err
