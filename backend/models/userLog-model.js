@@ -11,7 +11,10 @@ const userLogSchema = new mongoose.Schema({
   locations: [String],
   dateStart: String,
   dateEnd: String,
-  img: [String],
+  img: {
+    data: Buffer,
+    contentType: String
+  },
   text: {
     type: String,
     required: true,

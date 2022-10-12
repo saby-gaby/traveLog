@@ -1,5 +1,12 @@
 import userLogModel from "../models/userLog-model.js";
 
+import {dirname} from 'path';
+import { fileURLToPath } from "url";
+import fs from 'fs';
+import * as path from 'path';
+
+const __dirname = dirname(fileURLToPath(import.meta.url)); 
+
 export const getAllLogs = async (_, res) => {
   try {
     const allLogs = await userLogModel.find({});
@@ -17,7 +24,7 @@ export const getLogById = async (req, res) => {
     res.status(500).send(error.message);
   }
 };
-  
+
 export const getLogByLocation = async (req, res) => {
   try {
     const log = await userLogModel.where("locations").in([req.params.location]);
@@ -26,10 +33,31 @@ export const getLogByLocation = async (req, res) => {
     res.status(500).send(error.message);
   }
 };
+export const saveImageInDb = async (req, res, next) => {
+  const obj = {
+    img: {
+      data: fs.readFileSync(
+        path.join(__dirname + "/uploads/" + req.file.filename)
+      ),
+      contentType: "image/png",
+    },
+  };
+  imgModel.create(obj, (err, item) => {
+    if (err) {
+      console.log(err);
+    } else {
+      // item.save();
+      // res.redirect("/");
+      console.log(item);
+      next()
+    }
+  });
+};
 
 export const postLog = async (req, res) => {
   try {
     const newLog = await userLogModel.create(req.body);
+
 
     console.debug("newLog", newLog);
     res.send({ msg: `successfully inserted with id ${newLog._id}` });

@@ -32,7 +32,8 @@ const UserLog = (props) => {
         <li>
           <div className="imgList">
             Bilder der Reise:
-            <UserImages images={img} />
+            <UserImages images={img} />   //<img src="data:image/<%=image.img.contentType%>;base64,
+                                          //<%=image.img.data.toString('base64')%>" alt={name}/>
           </div>
         </li>
         <li>Reisetagebuch: {text}</li>
