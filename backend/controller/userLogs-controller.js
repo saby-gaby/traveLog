@@ -1,11 +1,11 @@
 import userLogModel from "../models/userLog-model.js";
 
-import {dirname} from 'path';
-import { fileURLToPath } from "url";
-import fs from 'fs';
-import * as path from 'path';
+// import {dirname} from 'path';
+// import { fileURLToPath } from "url";
+// import fs from 'fs';
+// import * as path from 'path';
 
-const __dirname = dirname(fileURLToPath(import.meta.url)); 
+// const __dirname = dirname(fileURLToPath(import.meta.url)); 
 
 export const getAllLogs = async (_, res) => {
   try {
@@ -33,26 +33,26 @@ export const getLogByLocation = async (req, res) => {
     res.status(500).send(error.message);
   }
 };
-export const saveImageInDb = async (req, res, next) => {
-  const obj = {
-    img: {
-      data: fs.readFileSync(
-        path.join(__dirname + "/uploads/" + req.file.filename)
-      ),
-      contentType: "image/png",
-    },
-  };
-  imgModel.create(obj, (err, item) => {
-    if (err) {
-      console.log(err);
-    } else {
-      // item.save();
-      // res.redirect("/");
-      console.log(item);
-      next()
-    }
-  });
-};
+// export const saveImageInDb = async (req, res, next) => {
+//   const obj = {
+//     img: {
+//       data: fs.readFileSync(
+//         path.join(__dirname + "/uploads/" + req.file.filename)
+//       ),
+//       contentType: "image/png",
+//     },
+//   };
+//   imgModel.create(obj, (err, item) => {
+//     if (err) {
+//       console.log(err);
+//     } else {
+//       // item.save();
+//       // res.redirect("/");
+//       console.log(item);
+//       next()
+//     }
+//   });
+// };
 
 export const postLog = async (req, res) => {
   try {
