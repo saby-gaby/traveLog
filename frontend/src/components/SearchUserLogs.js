@@ -1,54 +1,86 @@
-import { useEffect, useState, useContext } from "react";
+import { useContext, useState } from "react";
 import axios from "axios";
 import UserImages from "./UserImages.js";
+import { UserLogsContext } from "../context/userLogsContext.js";
 
-const SearchUserLogs = () => {
+const SearchUserLogs = (props) => {
   const [search, setSearch] = useState("");
   const [searchResults, setSearchResults] = useState([]);
+  const { setEdit, edit, setTravelDest } = useContext(UserLogsContext);
 
   const handleSearchChange = (event) => {
     setSearch(event.target.value);
   };
 
   const getSearchResults = async () => {
-    const resp = await axios.get(
-      `http://localhost:3001/userLogs/search/${search}`
-    );
-    const data = await resp.data;
-    setSearchResults(data);
+    if (search.trim()) {
+      const resp = await axios.get(
+        `http://localhost:3001/userLogs/search/${search.trim()}`
+      );
+      const data = await resp.data;
+      setSearchResults(data);
+    }
   };
 
-  let searchedLogs = searchResults.map((e) => {
+  let searchedLogs = searchResults.map((e, i) => {
     return (
-      <>
-        <li>
-          {e.type} nach {e.locations[0]}
-          <ul>
-            <li>von: {e.name}</li>
-            <li>Art der Reise: {e.type}</li>
-            <li>Reiseziele: {e.locations}</li>
-            <li>
-              von: {e.dateStart} bis: {e.dateEnd}
-            </li>
-            <li>
+      <li key={i}>
+        <ul>
+          <h3>
+            {e.type} nach {e.locations[0]}
+          </h3>
+          <li>
+            von: <span>{e.name}</span>
+          </li>
+          <li>
+            Art der Reise: <span>{e.type}</span>
+          </li>
+          <li>Reiseziele: {e.locations.join(", ")}</li>
+          <li>
+            von: {e.dateStart} bis: {e.dateEnd}
+          </li>
+          <li>
+            <div className="imgList">
               Bilder der Reise:
               <UserImages images={e.img} />
-            </li>
-            <li>Reisetagebuch: {e.text}</li>
-          </ul>
-        </li>
+            </div>
+          </li>
+          <li>Reisetagebuch: {e.text}</li>
+          <button
+            onClick={() => {
+              setEdit(!edit);
+              setTravelDest(e);
+            }}
+          >
+            Eintrag bearbeiten
+          </button>
+        </ul>
         <br />
-      </>
+      </li>
     );
   });
 
   return (
     <>
-      <h2>Wo soll's denn hingehen?</h2>
-      <input onChange={handleSearchChange} />
-      <button onClick={getSearchResults}>Suche</button>
-      <h2>Suchergebnisse:</h2>
-      {searchedLogs}
+      <header>
+        <h1>
+          Trave<span id="l">l</span>
+          <span id="og">og</span>
+        </h1>
+        <div id="search">
+          <h2>Wo soll's denn hingehen?</h2>
+          <input onChange={handleSearchChange} />
+          <button onClick={getSearchResults}>Suche</button>
+        </div>
+      </header>
+      <div >
+        {searchResults.length !== 0 && (
+          <>
+            <h2>Suchergebnisse:</h2>
+            <ul id="searchedLogs">{searchedLogs}</ul>
+          </>
+        )}
+      </div>
     </>
   );
 };

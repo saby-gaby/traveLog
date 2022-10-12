@@ -19,31 +19,35 @@ const UserLog = (props) => {
 
   return (
     <>
-      <li>
-        {type} nach {locations[0]}
-        <ul>
-          <li>von: {name}</li>
-          <li>Art der Reise: {type}</li>
-          <li>Reiseziele: {locations}</li>
-          <li>
-            von: {dateStart} bis: {dateEnd}
-          </li>
-          <li>
+      <ul>
+      <h3>
+        {type} nach {locations.join(", ")}
+      </h3>
+        <li>von: <span>{name}</span></li>
+        <li>Art der Reise: <span>{type}</span></li>
+        <li>Reiseziele: {locations.join(", ")}</li>
+        <li>
+          von: <span>{dateStart}</span> bis: <span>{dateEnd}</span>
+        </li>
+        <li>
+          <div className="imgList">
             Bilder der Reise:
             <UserImages images={img} />
-          </li>
-          <li>Reisetagebuch: {text}</li>
-        </ul>
+          </div>
+        </li>
+        <li>Reisetagebuch: {text}</li>
+      <div className="btns">
         <button onClick={() => onLogDelete(id)}>Eintrag löschen</button>
         <button
           onClick={() => {
             setEdit(!edit);
             getTravelDestination(id);
           }}
-        >
+          >
           Eintrag bearbeiten
         </button>
-      </li>
+      </div>
+      </ul>
       <br />
     </>
   );

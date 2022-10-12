@@ -18,3 +18,4 @@ const UserLogsProvider = ({ children }) => {
 };
 
 export { UserLogsContext, UserLogsProvider };
+

@@ -34,12 +34,12 @@ const UserLogs = () => {
   };
 
   return (
-    <>
-      <h3>Tagebucheinträge von anderen Nutzern:</h3>
-      <>
+    <div>
+      <h2>Alle Tagebucheinträge:</h2>
+      <ul id="allLogs">
         {[...logs].reverse().map((UserLogObj, index) => {
           return (
-            <ul key={index}>
+            <li key={index}>
               <UserLog
                 name={UserLogObj.name}
                 type={UserLogObj.type}
@@ -52,11 +52,11 @@ const UserLogs = () => {
                 id={UserLogObj._id}
                 getTravelDestination={getTravelDestination}
               />
-            </ul>
+            </li>
           );
         })}
-      </>
-    </>
+      </ul>
+    </div>
   );
 };
 

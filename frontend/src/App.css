@@ -1,3 +1,227 @@
-img {
-    width: 200px;
+@import url("http://fonts.cdnfonts.com/css/matter-wild");
+
+body {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.App {
+  text-align: center;
+  background-color: rgba(192, 192, 192, 0.25);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  min-height: 100vh;
+  color: darkslategray;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+header {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+h1 {
+  margin: 1rem 0;
+  padding: 0.25rem 1rem;
+  font-family: "Matter Wild", sans-serif;
+  font-size: 3rem;
+  font-weight: lighter;
+  display: inline-block;
+  border: 3px solid darkslategray;
+  border-radius: 70%;
+}
+
+span {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+#l {
+  color: cadetblue;
+  font-size: 3rem;
+  text-transform: uppercase;
+  margin-bottom: -0.5rem;
+  margin-left: -0.25rem;
+}
+
+#og {
+  margin-bottom: -1rem;
+}
+
+#search {
+  padding: 0.5rem;
+  border: 1px solid darkslategray;
+  border-radius: 0.5rem;
+}
+
+#search button,
+#addBtn {
+  padding: 0.25rem;
+  background-color: cadetblue;
+  color: white;
+  border: none;
+  border-radius: 0.25rem;
+}
+
+input,
+textarea {
+  border: 1px solid cadetblue;
+  border-radius: 0.25rem;
+  padding: 0.2rem;
+  background-color: rgba(95, 158, 160, 0.25);
+}
+
+h2 {
+  margin: 0.25rem;
+  text-transform: uppercase;
+}
+
+#searchedLogs,
+#allLogs {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  list-style-type: none;
+  padding-left: 0;
+}
+
+#searchedLogs ul,
+#allLogs ul {
+  list-style-type: none;
+  padding-left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0.5rem;
+  border: 1px solid darkslategray;
+  border-radius: 0.25rem;
+  width: 80vw;
+  box-shadow: 0.25rem 0.25rem 0.5rem lightgray inset,
+    -0.25rem -0.25rem 0.75rem lightgray inset, 0.1rem 0.1rem 0.5rem gray;
+}
+
+#searchedLogs ul li,
+#allLogs ul li {
+  display: flex;
+  justify-content: flex-start;
+  gap: 1rem;
+  width: 100%;
+  min-width: 200px;
+}
+
+#searchedLogs .imgList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  align-items: flex-start;
+}
+
+button {
+  padding: 0.5rem;
+  background-color: cadetblue;
+  color: white;
+  border: none;
+  border-radius: 0.25rem;
+  width: max-content;
+  margin: auto;
+}
+
+h3 {
+  margin: 0.1rem 0;
+  color: cadetblue;
+  font-size: 1.3rem;
+}
+
+.photos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.photos img {
+  max-width: 150px;
+}
+
+#form {
+  max-width: max-content;
+  padding: 0.25rem 2rem;
+  border: 1px solid darkslategray;
+  border-radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#form ul {
+  list-style-type: none;
+  padding-left: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.25rem;
+}
+
+#form ul li {
+  display: flex;
+  gap: 0.5rem;
+  align-items: flex-start;
+}
+
+#text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+#text textarea {
+  width: 400px;
+  margin-bottom: 0.5rem;
+}
+
+.btns {
+  margin-top: 0.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+@media (min-width: 768px) {
+  header {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  header > * {
+    margin: 1rem 2rem;
+  }
+
+  #form {
+    max-width: 60vw;
+    width: 60%;
+    align-items: flex-start;
+  }
+}
+
+@media (min-width: 1280px) {
+  body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .App {
+    width: 85vw;
+  }
 }
