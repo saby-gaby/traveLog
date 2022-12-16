@@ -1,11 +1,5 @@
 # traveLog
 
-**[Test this app yourself](github.link)**
-
----
-
-![describe your Picture](link/yourpicture.png)
-
 #### Navigation
 
 - About Project
